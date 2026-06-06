@@ -1,0 +1,21 @@
+[init]
+	defaultBranch = main
+
+[user]
+	name = vigonotion
+	email = 1506970+vigonotion@users.noreply.github.com
+
+[push]
+	autoSetupRemote = true
+
+[alias]
+    p    = push
+    s    = status -sb
+    co   = checkout
+    cob  = checkout -b
+    sw   = switch
+    swc  = switch -c
+    ac   = !git add -A && git commit -m
+    acp  = !git add -A && git commit -m && git push
+    oops = commit --amend --no-edit
+    undo = reset HEAD~1 --mixed

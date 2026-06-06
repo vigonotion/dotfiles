@@ -1,0 +1,69 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+format = """
+$directory$git_branch$git_status$nodejs$dotnet$package${custom.obsidian}$fill$cmd_duration$time
+$character"""
+
+[directory]
+style = "white"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " "
+format = "[ ]($style)[$path]($style)[$read_only](red) "
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = 'bold'
+modified = '[ ${count}](bold yellow) '
+staged = '[ ${count}](bold green) '
+untracked = '[ ${count}](bold blue) '
+deleted = '[ ${count}](bold red) '
+renamed = '[ ${count}](bold purple) '
+stashed = '[ ${count}](bold cyan) '
+conflicted = '[ ${count}](bold red) '
+ahead = '[⇡${count}](bold green) '
+behind = '[⇣${count}](bold red) '
+diverged = '[⇕⇡${ahead_count}⇣${behind_count}](bold purple) '
+
+[nodejs]
+symbol = " "
+style = "bold green"
+format = "[$symbol($version )]($style)"
+
+[dotnet]
+symbol = " "
+style = "bold blue"
+format = "[$symbol($version )]($style)"
+
+[package]
+symbol = " "
+style = "bold 208"
+format = "[$symbol$version]($style) "
+display_private = false
+disabled = true
+
+[custom.obsidian]
+command = "~/.config/starship/obsidian.sh"
+when = "~/.config/starship/obsidian.sh"
+symbol = "󱞁 "
+style = "bold #5E409D"
+format = '[$symbol$output]($style) '
+
+[fill]
+symbol = " "
+
+
+[cmd_duration]
+min_time = 500
+format = "[󱎫 $duration]($style) "
+style = "white"
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
