@@ -1,0 +1,33 @@
+# shell-agnostic aliases
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+
+# Homebrew-Tools (macOS)
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export CC="/opt/homebrew/opt/llvm/bin/clang"
+export CXX="/opt/homebrew/opt/llvm/bin/clang++"
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+
+# tools (only load if available)
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2>&1
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+# shell integratons
+eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(zoxide init zsh --cmd cd)"
+eval "$(pay-respects zsh --alias)"
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
+source <(fzf --zsh)
+
+# local overrides
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
